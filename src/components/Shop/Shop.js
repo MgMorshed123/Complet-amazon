@@ -32,7 +32,7 @@ const Shop = () => {
 
         })
 
-    },[])
+    },[page,size])
 
     /* 
     if we don not convert this into round numbr than array length will be invalid
