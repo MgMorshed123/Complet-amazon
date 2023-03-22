@@ -6,13 +6,34 @@ import Product from '../Product/Product';
 import './Shop.css';
 
 const Shop = () => {
-    const {products, count} = useLoaderData();
+    // const {products, count} = useLoaderData();
     const [cart, setCart] = useState([]);
 
     const [page,setPage] = useState(0)
     const [size,setSize] = useState(10)
 
+    const [products, setProducts] =useState([])
+
+    const [count , setCount ] = useState(0);
+
+
     const perPage = 10;
+
+
+    useEffect(() => {
+
+        const url =`http://localhost:5000/products?page=${page}&size=${size}`;
+
+        fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            setCount(data.count);
+            setProducts(data.products);
+
+        })
+
+    },[])
+
     /* 
     if we don not convert this into round numbr than array length will be invalid
 
@@ -85,13 +106,33 @@ const Shop = () => {
                 {
                     [...Array(pages).keys()].map(number => <button
                     key={number}
+                  
+                    className={page === number && 'selected'}
 
                     onClick ={() => setPage(number)}
                     >
                         {number}
                     </button>)
                 }
+
+                      
+         <select  onChange={event => setSize(event.target.value)}>
+            
+            <option value='5'>5</option>
+       
+            <option value='10'>10</option>
+ 
+            <option value='15'>15</option>
+ 
+            <option value='20'>20</option>
+ 
+            <option value='25'>25</option>
+          </select>
             </div>
+
+
+  
+
         </div>
     );
 };

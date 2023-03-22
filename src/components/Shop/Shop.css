@@ -15,9 +15,17 @@
 .pagination{
 
     margin-left: 200px;
-    margin-bottom: 50px;
-    
+    margin-bottom: 50px;   
 }
+
+.pagination .selected{
+
+    background-color: goldenrod;
+    border: gold;
+    
+
+} 
+
 @media screen and (max-width:1100px) {
     .products-container{
         grid-template-columns: repeat(2, 1fr);
