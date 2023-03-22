@@ -6,8 +6,17 @@ import Product from '../Product/Product';
 import './Shop.css';
 
 const Shop = () => {
-    const {products} = useLoaderData();
+    const {products, count} = useLoaderData();
     const [cart, setCart] = useState([]);
+
+    const [page,setPage] = useState(0)
+    const [size,setSize] = useState(10)
+
+    const perPage = 10;
+    const pages = count /size;
+
+
+
 
     const clearCart = () =>{
         setCart([]);
@@ -63,6 +72,16 @@ const Shop = () => {
                         <button>Review Order</button>
                     </Link>
                 </Cart>
+            </div>
+
+            <div className="pagination">
+                {
+                    [...Array(pages).keys()].map(number => <button
+                    key={number}
+                    >
+                        {number}
+                    </button>)
+                }
             </div>
         </div>
     );
