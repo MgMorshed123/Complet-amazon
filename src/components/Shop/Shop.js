@@ -13,7 +13,11 @@ const Shop = () => {
     const [size,setSize] = useState(10)
 
     const perPage = 10;
-    const pages = count /size;
+    /* 
+    if we don not convert this into round numbr than array length will be invalid
+
+    */
+    const pages = Math.ceil(count /size);
 
 
 
@@ -74,10 +78,15 @@ const Shop = () => {
                 </Cart>
             </div>
 
+
             <div className="pagination">
+
+                <p>Currently Selected Page : {page}</p>
                 {
                     [...Array(pages).keys()].map(number => <button
                     key={number}
+
+                    onClick ={() => setPage(number)}
                     >
                         {number}
                     </button>)
